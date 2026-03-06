@@ -1,0 +1,17 @@
+[6.3.2026 г., во 15:27:35] [POST] [/show/login] User:[guest
+][6.3.2026 г., во 15:28:34] [GET] [/show] User:[guest
+][6.3.2026 г., во 15:29:07] [PATCH] [/show/69aac2731dfdeff52c476df4] User:[guest
+][6.3.2026 г., во 15:33:08] [PATCH] [/show/69aac2731dfdeff52c476df4] User:[hadzijanev6@gmail.com
+]| Data: {"title":"How i met your mother"}
+[6.3.2026 г., во 15:34:03] [PATCH] [/show/69aac2731dfdeff52c476df4] User:[Ani
+]| Data: {"title":"How i met your mother2"}
+[6.3.2026 г., во 15:34:28] [PATCH] [/show/69aac2731dfdeff52c476df4] User:[Ani
+]| Data: {"title":"How i met your mother"}
+[6.3.2026 г., во 15:35:49] [POST] [/show/] User:[Ani
+]| Data: {"title":"911","year":2018,"slika":"https://deadline.com/wp-content/uploads/2025/10/911-season-9-cast-photos.jpg"}
+[6.3.2026 г., во 15:44:40] [POST] [/createbyuser] User:[Ani
+]| Data: {"title":"The lincoln lawyer","year":2024,"imdbRating":10}
+[6.3.2026 г., во 15:45:07] [GET] [/me] User:[Ani
+]| Data: {"title":"The lincoln lawyer","year":2024,"imdbRating":10}
+[6.3.2026 г., во 15:49:48] [POST] [/createbyuser] User:[Ani
+]| Data: {"title":"The lincoln lawyer","year":2024,"imdbRating":10}
