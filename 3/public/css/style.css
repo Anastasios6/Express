@@ -1,0 +1,35 @@
+body {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.shows {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border: 1px solid black;
+  width: 500px;
+  /* display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  border: 1px solid black; */
+}
+.shows img {
+  width: 300px;
+  height: 300px;
+}
+.singleShow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border: 1px solid black;
+  width: 500px;
+}
+.singleShow img {
+  width: 300px;
+  height: 300px;
+}

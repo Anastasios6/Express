@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>single show</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <h1><%=title%></h1>
+
+    <div class="singleShow">
+      <h1><%=show.title %></h1>
+      <img src="/img/shows/<%=show.picture %>" alt="" />
+      <h4>Rating:<%=show.imdbRating %></h4>
+      <h4>Release year:<%=show.year %></h4>
+      <h4>Author:<%=show.author %></h4>
+      <button><a href="/viewshows">Back to all shows</a></button>
+    </div>
+  </body>
+</html>

@@ -14,18 +14,22 @@ const ShowSchema = new mongoose.Schema({
         min: 1800,
         max: new Date().getFullYear(),
     },
-    imbdRating: {
+    imdbRating: {
         type: Number,
         min: 0,
         max: 10,
     },
-    slika: {
+    picture: {
         type: String,
         default: "default.jpg",
     },
     sliki: {
         type: [String],
     },
+    author: {
+        type: mongoose.Schema.ObjectId,
+        ref: "User"
+    }
 
 });
 

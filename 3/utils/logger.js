@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const { object } = require("webidl-conversions");
+
 
 
 const createLog = (req, res, next) => {
@@ -8,13 +8,13 @@ const createLog = (req, res, next) => {
     const method = req.method;
     const url = req.originalUrl;
     const user = req.user ? req.user.name : "guest";
+    const role = req.user ? req.user.role : "none";
     const body = { ...req.body };
-
     const bodyData = Object.keys(body).length > 0
         ? `| Data: ${JSON.stringify(body)}`
         : "";
 
-    const logEntry = `[${time}] [${method}] [${url}] User:[${user}\n]${bodyData}\n`;
+    const logEntry = `[${time}] [${method}] [${url}] User:[${user}\n]Role: ${role}${bodyData}\n`;
 
 
     const logPath = path.join(__dirname, "app.log");

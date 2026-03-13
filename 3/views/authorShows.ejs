@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shows by same author</title>
+    <link rel="stylesheet" href="/css/style.css">
+  </head>
+ <body>
+    <h1><%=title%></h1>
+   
+    <% if (shows.length === 0) {
+      %> <p>Nema pronajdeni filmovi</p> <% 
+    } else {
+      %> <% shows.forEach(show => {
+        %> <div class="shows">
+            <a href="/viewshows/<%=show.id %>">
+                <h2><%=show.title%></h2>
+            </a>
+            <img src="/img/shows/<%=show.picture %>" alt="">
+            <p>Rating: <%=show.imdbRating%></p>
+            <button><a href="/viewshows/<%=show.id%>"> View show</a></button>
+        </div> <% 
+      }); %> <% } %>
+
+  </body>
+</html>

@@ -11,7 +11,7 @@ const login = async (email, password) => {
             }
         });
         console.log(res,);
-        window.location.href = "/viewmovies";
+        window.location.href = "/viewshows";
     } catch (error) {
         console.log(error.message);
     }
