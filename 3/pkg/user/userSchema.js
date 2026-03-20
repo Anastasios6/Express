@@ -26,6 +26,8 @@ const userSchema = new mongoose.Schema({
         validate: [validator.isStrongPassword, "Password must be secure"],
         minLength: [4, "Must have at least 4 characters"],
     },
+    passwordResetToken: String,
+    passwordResetExpires: Date,
 });
 
 userSchema.pre("save", async function (next) {

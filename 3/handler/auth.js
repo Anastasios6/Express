@@ -2,6 +2,8 @@ const jwt = require("jsonwebtoken");
 const User = require("../pkg/user/userSchema");
 const bcrypt = require("bcryptjs");
 const { promisify } = require("util");
+const sendEmail = require("./email");
+const crypto = require("crypto");
 
 exports.signup = async (req, res) => {
     try {
@@ -9,7 +11,7 @@ exports.signup = async (req, res) => {
             name: req.body.name,
             email: req.body.email,
             password: req.body.password,
-            role: req.body.role,
+            // role: req.body.role,
         });
         const token = jwt.sign(
             { id: newUser.id, name: newUser.name, email: newUser.email, role: newUser.role, },
@@ -23,6 +25,13 @@ exports.signup = async (req, res) => {
             secure: false,
             httpOnly: true,
         });
+        await sendEmail({
+            email: newUser.email,
+            subject: "Thanks for creating an account.Have a great time",
+            message: `Welcome ${newUser.name}. Have a great time`
+        });
+
+
         res.status(200).json({
             status: "Success",
             token
@@ -116,3 +125,76 @@ exports.restrict = (...roles) => {
         next();
     };
 };
+
+
+exports.forgotPassword = async (req, res) => {
+    try {
+        const user = await User.findOne({ email: req.body.email });
+
+        if (!user) {
+            return res.status(404).send("User doesn't exist");
+        }
+        const token = crypto.randomBytes(32).toString("hex");
+        user.passwordResetToken = crypto.createHash("sha256").update(token).digest("hex");
+        user.passwordResetExpires = Date.now() + 30 * 60 * 1000;
+
+        await user.save({ validateBeforeSave: false });
+
+        const resetUrl = `${req.protocol}://${req.get("host")}/resetPassword/${token}`;
+        const resetMessage = `You have forgotten your password. Please use this link ${resetUrl} using PATCH method`;
+
+        await sendEmail({
+            email: user.email,
+            subject: "Your password reset token (Valid for 30 minutes)",
+            message: resetMessage
+        });
+        res.status(200).json({
+            status: "success",
+            message: "Token sent to email",
+        });
+    } catch (error) {
+        return res.status(500).send(error.message);
+    }
+};
+
+exports.resetPassword = async (req, res) => {
+    try {
+        const token = req.params.token;
+        const hashedToken = crypto.createHash("sha256").update(token).digest("hex");
+
+        const user = await User.findOne({
+            passwordResetToken: hashedToken,
+            passwordResetExpires: { $gt: Date.now() }
+        });
+
+        if (!user) {
+            res.status(400).send("token invalid or expired");
+        }
+        user.password = req.body.password;
+        user.passwordResetExpires = undefined;
+        user.passwordResetToken = undefined;
+        await user.save();
+        const jwtToken = jwt.sign(
+            { id: user.id, name: user.name, email: user.email, role: user.role },
+            process.env.JWT_SECRET,
+            {
+                expiresIn: process.env.JWT_EXPIRES,
+            },
+        );
+
+        res.cookie("jwt", token, {
+            expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000),
+            secure: false,
+            httpOnly: true,
+        });
+
+        res.status(200).json({
+            status: "success",
+            jwtToken,
+        });
+    } catch (error) {
+        return res.status(500).send(error.message);
+
+    }
+};
+
