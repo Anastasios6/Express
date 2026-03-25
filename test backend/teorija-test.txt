@@ -4,7 +4,7 @@
 Kako ruti, http i slicno. 
 4. MVC (model view controller)- e arhitektura vo koja shto se podeleni zadacite, vo modelot vklucuvame podatoci za bazata na podatoci, view e zadolzhen za UI-to sprema korisnikot, CONTROLLER zadolzhen e za povrzuvanje izmegju controllerot i viewto. 
 5.Ruti se pateki kon nekoj del od strana/api, koi vodat kon odredeni podatoci. Kako na pr "www.home.come/login", vodi kon login forma za logiranje na stranata. 
-6. ??? import export? 
+6. import export 
 7. Veb servis e API koeshto isprakja podatoci kon klient. 
 primer za web servis weatherAPI (// https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}) od prethodniot chas. 
 8. JWT, pretstavuva kako nekoj vid na pecat(token) koishto mu go davame na korisnikot za moznost da pristappi kon nashata aplikacija za odredeno vreme. Se koristi najcesto pri signup/login so toa shto mu zadavame token i mu ovozmozhuvame da pristapi kon app i da ja koristi vo negoviot domet. (vo negoviot domet, vo slucajov za ako e samo user da mozhe da vrsi opredeleni dejstvija a ako e admin i slicnmo da mozhe extra). Go proveruva tokenot i mu dava pristap. 
