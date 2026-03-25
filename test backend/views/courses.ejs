@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Welcome</title>
+</head>
+<body>
+  <h1><%=title%></h1>
+
+  <% if (courses.length === 0) { %>
+    <p>Нема курсеви</p>
+  <% } else { %>
+    <% courses.forEach(course => { %>
+      <div>
+        <h2><%= course.name %></h2>
+        <p>Address: <%= course.address %></p>
+        <p>Area: <%= course.area %></p>
+        <p>Academy: <%= course.academy ? course.academy.name : "No academy" %></p>
+      </div>
+      <hr>
+    <% }) %>
+  <% } %>
+</body>
+</html>

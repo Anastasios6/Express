@@ -25,7 +25,7 @@ app.post("/show/login", auth.login);
 
 
 //CRUD
-app.post("/show", auth.protect, logs, auth.restrict("admin"), show.createMovie);
+app.post("/show", auth.protect, logs, auth.restrict("admin"), show.createShow);
 app.get("/show", show.getAll);
 app.get("/show/:id", show.getOne);
 app.patch("/show/:id", auth.protect, logs, show.uploadShowPhoto, auth.restrict("admin"), show.update);
@@ -42,11 +42,10 @@ app.get("/viewshows", auth.protect, logs, view.viewShows);
 app.get("/viewshows/:id", auth.protect, logs, view.viewShow);
 app.get("/viewshows/mine/:id", auth.protect, logs, view.mineShows);
 
-//RESET PW-postman
+
 app.post("/forgotPassword", auth.forgotPassword);
 app.patch("/resetPassword/:token", auth.resetPassword);
 
-//view Reset password
 app.get("/forgotPassword", view.getForgotPasswordForm);
 app.post("/submitForgotPassword", view.submitForgotPasswordForm);
 app.get("/resetPassword/:token", view.getResetPasswordForm);

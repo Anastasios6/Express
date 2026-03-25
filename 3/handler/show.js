@@ -29,7 +29,7 @@ const upload = multer({
 
 exports.uploadShowPhoto = upload.single("photo");
 
-exports.createMovie = async (req, res) => {
+exports.createShow = async (req, res) => {
     try {
         const show = await Show.create(req.body);
         res.status(200).json({
@@ -144,7 +144,7 @@ exports.getByUser = async (req, res) => {
     try {
         const author = req.user.id;
         const myShows = await Show.find({ author: author });
-        res.status(200).json({ myShows });
+        res.status(200).json(myShows);
     } catch (error) {
         res.status(500).json({
             status: "Failed",
